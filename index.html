@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Letter Counter</title>
+</head>
+<body>
+
+    <div style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
+        <h1>This program finds the number of a given letter in a string.</h1>
+        <h3>Type your  string</h3>
+        <input type="text" id ="word"/>
+        <h3>Type your  letter</h3>
+        <input type="text" id="letter"/>
+        <button title="Send" id="sender" style="display: block; font-size: 30; width: 5rem; height: 3rem ; margin-top: 2rem;">Count Letter</button>
+        <h3 id="result"></h3>
+    </div>
+    
+    <script type="text/javascript">
+        
+        document.querySelector("button")
+        .addEventListener("click", () => { 
+            let word = document.querySelector("#word").value;
+            let letter = document.querySelector("#letter").value;
+            let letterCount = 0;
+            let letterIndex = word.indexOf(letter);
+
+            if(letterIndex === -1){
+                document.querySelector("#result").innerHTML=`"${word}" does not contain "${letter}".`
+            }else{
+                let changedWord = word
+
+                while(letterIndex !== -1){
+                    letterCount = letterCount + 1;
+                    changedWord = changedWord.slice(0, letterIndex) + changedWord.slice(letterIndex+1);
+                    letterIndex = changedWord.indexOf(letter);
+                    console.log(letterCount)
+                }
+                document.querySelector("#result").innerHTML=`"${word}" contains ${letterCount} letter of "${letter}". `
+            }
+            console.log(word.indexOf(letter))
+        })
+    </script>
+</body>
+</html>
